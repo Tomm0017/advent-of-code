@@ -1,4 +1,4 @@
-package com.tomm.advent2020.day1
+package com.tomm.advent2020.day2
 
 import com.tomm.advent2020.day2.Day2
 import com.tomm.advent2020.day2.PasswordListParser
