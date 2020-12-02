@@ -1,12 +1,15 @@
 package com.tomm.advent2020
 
 import com.tomm.advent2020.day1.Day1
+import com.tomm.advent2020.day2.Day2
+import com.tomm.advent2020.day2.PasswordListParser
 
 fun main() {
     val days = arrayOf(
-        AdventDay(1, Day1, IntListParser(), "day1.txt")
+        AdventDay(1, Day1, IntListParser(), "day1.txt"),
+        AdventDay(2, Day2, PasswordListParser(), "day2.txt")
     )
-    days.forEach(::solve)
+    days.forEach { solve(it) }
 }
 
 private fun <T> solve(
