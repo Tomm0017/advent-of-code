@@ -1,7 +1,6 @@
 package com.tomm.advent2020.day1
 
 import com.tomm.advent2020.PuzzleStep
-import com.tomm.advent2020.plus
 
 val Day1 = Step1() + Step2()
 
