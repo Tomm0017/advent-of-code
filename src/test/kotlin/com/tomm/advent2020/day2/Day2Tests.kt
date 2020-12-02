@@ -1,7 +1,5 @@
 package com.tomm.advent2020.day2
 
-import com.tomm.advent2020.day2.Day2
-import com.tomm.advent2020.day2.PasswordListParser
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
