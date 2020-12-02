@@ -23,7 +23,7 @@ private class Step2 : PuzzleStep<List<Password>> {
             val (char, range, text) = password
             val char1 = text[range.first - INDEX_PADDING_FOR_DUMMIES]
             val char2 = text[range.last - INDEX_PADDING_FOR_DUMMIES]
-            char1 == char && char2 != char || char1 != char && char2 == char
+            (char1 == char) xor (char2 != char)
         }
         return count.toString()
     }
