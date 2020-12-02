@@ -12,25 +12,21 @@ class PasswordListParser : InputParser<List<Password>> {
 
     override fun parse(input: Sequence<String>): List<Password> {
         val passwords = input.map { line ->
-            val rangeIndex = line.indexOf(RANGE_SEPARATOR)
-            val charIndex = line.indexOf(PASSWORD_SEPARATOR, rangeIndex)
-            val password = line.substring(line.indexOf(WHITESPACE, charIndex) + 1)
+            val match = regex.matchEntire(line) ?: error("Invalid line match: $line")
+            val values = match.groupValues
 
-            val char = line[charIndex - 1]
-            val rangeMinCount = line.substring(0, rangeIndex).toInt()
-            val rangeMaxCount = line.substring(rangeIndex + 1, charIndex - 2).toInt()
+            val rangeMin = values[1].toInt()
+            val rangeMax = values[2].toInt()
+            val char = values[3][0]
+            val password = values[4]
 
-            Password(char, rangeMinCount..rangeMaxCount, password)
+            Password(char, rangeMin..rangeMax, password)
         }
         return passwords.toList()
     }
 
     companion object {
 
-        private const val WHITESPACE = ' '
-
-        private const val RANGE_SEPARATOR = '-'
-
-        private const val PASSWORD_SEPARATOR = ":"
+        private val regex = Regex("(\\d+)-(\\d+) (\\w): (\\w+)")
     }
 }

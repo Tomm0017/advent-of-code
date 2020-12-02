@@ -8,8 +8,9 @@ private class Step1 : PuzzleStep<List<Password>> {
 
     override fun solve(input: List<Password>): String {
         val count = input.count { password ->
-            val (required, requiredRange, text) = password
-            text.count { it == required } in requiredRange
+            val (required, range, text) = password
+            val count = text.count { it == required }
+            count in range
         }
         return count.toString()
     }
