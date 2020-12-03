@@ -39,22 +39,14 @@ private class Step2 : PuzzleStep<Map> {
 }
 
 private fun Map.trees(slopeX: Int, slopeY: Int): List<Tree> {
-    var lastX = 0
-    var lastY = 0
     val trees = mutableListOf<Tree>()
-    for (y in 0 until length) {
-        val targetY = (y - lastY) == slopeY
-        if (!targetY) continue
-        for (x in 0 until Int.MAX_VALUE) {
-            val targetX = (x - lastX) == slopeX
-            if (targetX) {
-                val tree = treeAt(x, y)
-                tree?.let { trees.add(it) }
-                lastX = x
-                lastY = y
-                break
-            }
-        }
+    var x = 0
+    var y = 0
+    while (y < length) {
+        val tree = treeAt(x, y)
+        tree?.let { trees.add(it) }
+        x += slopeX
+        y += slopeY
     }
     return trees
 }
