@@ -38,7 +38,7 @@ private class Step2 : PuzzleStep<Map> {
     }
 }
 
-private fun Map.treeCount(slopeX: Int, slopeY: Int): Int {
+private fun Map.trees(slopeX: Int, slopeY: Int): List<Tree> {
     var lastX = 0
     var lastY = 0
     val trees = mutableListOf<Tree>()
@@ -56,6 +56,11 @@ private fun Map.treeCount(slopeX: Int, slopeY: Int): Int {
             }
         }
     }
+    return trees
+}
+
+private fun Map.treeCount(slopeX: Int, slopeY: Int): Int {
+    val trees = trees(slopeX, slopeY)
     return trees.size
 }
 
