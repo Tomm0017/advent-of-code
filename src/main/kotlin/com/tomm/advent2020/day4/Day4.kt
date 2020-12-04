@@ -55,13 +55,13 @@ private class Step2 : PuzzleStep<List<Passport>> {
     }
 
     private fun Passport.hasValidHeight(key: String): Boolean {
-        val value = properties[key] ?: error("No height key: $properties")
+        val value = properties[key] ?: error("No height key.")
         if (value.contains(CENTIMETERS)) {
-            val cm = value.substring(0, value.indexOf(CENTIMETERS)).toInt()
-            return cm in VALID_CM_RANGE
+            val length = value.substring(0, value.indexOf(CENTIMETERS)).toInt()
+            return length in VALID_CM_RANGE
         } else if (value.contains(INCHES)) {
-            val cm = value.substring(0, value.indexOf(INCHES)).toInt()
-            return cm in VALID_IN_RANGE
+            val length = value.substring(0, value.indexOf(INCHES)).toInt()
+            return length in VALID_IN_RANGE
         }
         return false
     }
