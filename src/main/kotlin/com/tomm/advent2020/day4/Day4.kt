@@ -50,12 +50,12 @@ private class Step2 : PuzzleStep<List<Passport>> {
     }
 
     private fun Passport.inValidRange(key: String, range: IntRange): Boolean {
-        val value = properties[key]?.toIntOrNull() ?: return false
+        val value = properties.getValue(key).toIntOrNull()
         return value in range
     }
 
     private fun Passport.hasValidHeight(key: String): Boolean {
-        val value = properties[key] ?: error("No height key.")
+        val value = properties.getValue(key)
         if (value.contains(CENTIMETERS)) {
             val length = value.substring(0, value.indexOf(CENTIMETERS)).toInt()
             return length in VALID_CM_RANGE
@@ -67,12 +67,12 @@ private class Step2 : PuzzleStep<List<Passport>> {
     }
 
     private fun Passport.hasValidEyeColor(key: String): Boolean {
-        val value = properties[key]?.toLowerCase() ?: error("No eye color key.")
+        val value = properties.getValue(key).toLowerCase()
         return value in validEyeColors
     }
 
     private fun Passport.hasValidRegex(key: String, regex: Regex): Boolean {
-        val value = properties[key] ?: return false
+        val value = properties.getValue(key)
         return regex.matches(value)
     }
 
