@@ -11,7 +11,7 @@ class PassportListParser : InputParser<List<Passport>> {
         val properties = mutableMapOf<String, String>()
         input.forEach { line ->
             if (line.isBlank()) {
-                passports.add(properties.toPassport())
+                passports += Passport(properties.toMap())
                 properties.clear()
                 return@forEach
             }
@@ -27,14 +27,10 @@ class PassportListParser : InputParser<List<Passport>> {
         }
         /* take any pending properties and create a passport */
         if (properties.isNotEmpty()) {
-            passports.add(properties.toPassport())
+            passports += Passport(properties.toMap())
             properties.clear()
         }
         return passports
-    }
-
-    private fun Map<String, String>.toPassport(): Passport {
-        return Passport(toMap())
     }
 
     companion object {

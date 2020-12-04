@@ -15,7 +15,7 @@ private const val PASSPORT_ID = "pid"
 private const val CENTIMETERS = "cm"
 private const val INCHES = "in"
 
-private val requiredFields = arrayOf(
+private val requiredFields = listOf(
     EYE_COLOR,
     PASSPORT_ID,
     EXPIRE_YEAR,
@@ -57,10 +57,10 @@ private class Step2 : PuzzleStep<List<Passport>> {
     private fun Passport.hasValidHeight(key: String): Boolean {
         val value = properties.getValue(key)
         if (value.contains(CENTIMETERS)) {
-            val length = value.substring(0, value.indexOf(CENTIMETERS)).toInt()
+            val length = value.removeSuffix(CENTIMETERS).toIntOrNull()
             return length in VALID_CM_RANGE
         } else if (value.contains(INCHES)) {
-            val length = value.substring(0, value.indexOf(INCHES)).toInt()
+            val length = value.removeSuffix(INCHES).toIntOrNull()
             return length in VALID_IN_RANGE
         }
         return false
@@ -103,5 +103,5 @@ private class Step2 : PuzzleStep<List<Passport>> {
 }
 
 private fun Passport.hasRequiredFields(): Boolean {
-    return requiredFields.all { properties.containsKey(it) }
+    return properties.keys.containsAll(requiredFields)
 }
