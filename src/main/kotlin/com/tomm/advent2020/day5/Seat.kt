@@ -75,15 +75,12 @@ class SeatListParser : InputParser<List<Seat>> {
         }
     }
 
-    private fun IntRange.lower(): IntRange {
-        val center = (first + endInclusive) / 2
-        return first..center
-    }
+    private fun IntRange.lower(): IntRange = first..center
 
-    private fun IntRange.upper(): IntRange {
-        val center = (first + endInclusive) / 2
-        return (center + 1)..endInclusive
-    }
+    private fun IntRange.upper(): IntRange = (center + 1)..endInclusive
+
+    private val IntRange.center: Int
+        get() = (first + endInclusive) / 2
 }
 
 private sealed class Bound {
