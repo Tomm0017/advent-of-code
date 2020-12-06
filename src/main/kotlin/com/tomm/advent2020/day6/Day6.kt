@@ -21,7 +21,7 @@ private class Step2 : PuzzleStep<List<Questionnaire>> {
 }
 
 private fun Questionnaire.uniqueAnswers(): Set<Char> {
-    return answers.reduce { acc, set -> acc + set }
+    return answers.reduce { acc, set -> acc union set }
 }
 
 private fun Questionnaire.unanimousAnswers(): Set<Char> {
