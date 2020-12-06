@@ -9,6 +9,8 @@ import com.tomm.advent2020.day4.Day4
 import com.tomm.advent2020.day4.PassportListParser
 import com.tomm.advent2020.day5.Day5
 import com.tomm.advent2020.day5.SeatListParser
+import com.tomm.advent2020.day6.Day6
+import com.tomm.advent2020.day6.QuestionnaireParser
 
 fun main() {
     val days = arrayOf(
@@ -16,7 +18,8 @@ fun main() {
         AdventDay(2, Day2, PasswordListParser(), "day2.txt"),
         AdventDay(3, Day3, MapParser(), "day3.txt"),
         AdventDay(4, Day4, PassportListParser(), "day4.txt"),
-        AdventDay(5, Day5, SeatListParser(), "day5.txt")
+        AdventDay(5, Day5, SeatListParser(), "day5.txt"),
+        AdventDay(6, Day6, QuestionnaireParser(), "day6.txt")
     )
     days.forEach { solve(it) }
 }
