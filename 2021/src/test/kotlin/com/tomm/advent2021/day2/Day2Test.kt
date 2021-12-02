@@ -1,5 +1,6 @@
 package com.tomm.advent2021.day2
 
+import com.tomm.advent2021.day2.movement.MovementParser
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

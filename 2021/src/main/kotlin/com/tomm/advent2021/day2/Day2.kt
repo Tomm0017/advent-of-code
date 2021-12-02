@@ -1,6 +1,9 @@
 package com.tomm.advent2021.day2
 
 import com.tomm.PuzzleStep
+import com.tomm.advent2021.day2.movement.DepthMovement
+import com.tomm.advent2021.day2.movement.HorizontalMovement
+import com.tomm.advent2021.day2.movement.MovementCommand
 
 val Day2 = Step1() + Step2()
 

@@ -1,10 +1,6 @@
-package com.tomm.advent2021.day2
+package com.tomm.advent2021.day2.movement
 
 import com.tomm.InputParser
-
-interface MovementCommand
-class HorizontalMovement(val steps: Int) : MovementCommand
-class DepthMovement(val steps: Int) : MovementCommand
 
 class MovementParser : InputParser<List<MovementCommand>> {
 
@@ -23,7 +19,7 @@ class MovementParser : InputParser<List<MovementCommand>> {
         "forward" -> HorizontalMovement(steps)
         "down" -> DepthMovement(steps)
         "up" -> DepthMovement(-steps)
-        else -> error("Invalid command type $this")
+        else -> error("Invalid command type: $this")
     }
 
     companion object {

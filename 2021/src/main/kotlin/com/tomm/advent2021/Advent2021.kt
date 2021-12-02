@@ -5,7 +5,7 @@ import com.tomm.IntListParser
 import com.tomm.Puzzle
 import com.tomm.advent2021.day1.Day1
 import com.tomm.advent2021.day2.Day2
-import com.tomm.advent2021.day2.MovementParser
+import com.tomm.advent2021.day2.movement.MovementParser
 
 fun main() {
     val days = arrayOf(
