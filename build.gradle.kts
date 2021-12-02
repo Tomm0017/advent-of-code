@@ -1,21 +1,29 @@
 plugins {
-    kotlin("jvm") version "1.4.20"
+    kotlin("jvm")
 }
 
-repositories {
-    mavenCentral()
-}
+allprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+    }
 
-apply {
-    plugin("org.jetbrains.kotlin.jvm")
-}
+    repositories {
+        mavenCentral()
+    }
 
-dependencies {
-    implementation(kotlin("stdlib"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
-}
+    dependencies {
+        implementation(kotlin("stdlib-jdk8"))
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    tasks.withType<JavaCompile> {
+        options.release.set(11)
+    }
+
+    tasks {
+        test {
+            useJUnitPlatform()
+        }
+    }
 }
