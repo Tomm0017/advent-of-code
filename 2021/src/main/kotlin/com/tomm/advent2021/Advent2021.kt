@@ -6,11 +6,14 @@ import com.tomm.Puzzle
 import com.tomm.advent2021.day1.Day1
 import com.tomm.advent2021.day2.Day2
 import com.tomm.advent2021.day2.movement.MovementParser
+import com.tomm.advent2021.day3.Day3
+import com.tomm.advent2021.day3.DiagnosticReportParser
 
 fun main() {
     val days = arrayOf(
         AdventDay(1, Day1, IntListParser(), "day1.txt"),
-        AdventDay(2, Day2, MovementParser(), "day2.txt")
+        AdventDay(2, Day2, MovementParser(), "day2.txt"),
+        AdventDay(3, Day3, DiagnosticReportParser(), "day3.txt")
     )
     days.forEach { solve(it) }
 }
