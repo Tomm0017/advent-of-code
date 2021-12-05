@@ -25,9 +25,9 @@ private fun BitList.toDecimal(): Int {
 }
 
 private fun List<Boolean>.toBitList(): BitList {
-    val set = BitSet(size)
-    forEachIndexed { index, flag -> set[index] = flag }
-    return BitList(size, set)
+    val bits = BitSet(size)
+    forEachIndexed { index, flag -> bits[index] = flag }
+    return BitList(size, bits)
 }
 
 private class Part1 : PuzzleStep<DiagnosticReport> {
@@ -51,17 +51,17 @@ private class Part2 : PuzzleStep<DiagnosticReport> {
     override fun solve(input: DiagnosticReport): String {
         var oxygenRows = input.rows.toList()
         var co2Rows = input.rows.toList()
-        for (i in 0 until input.columns.size) {
-            val oxygenColumn = oxygenRows.map { it[i] }.toBitList()
-            val mostCommon = oxygenColumn.mostCommonBit()
+        for (bitPos in 0 until input.columns.size) {
             if (oxygenRows.size > 1) {
-                oxygenRows = oxygenRows.filter { it[i] == mostCommon.bitFlag }
+                val column = oxygenRows.map { it[bitPos] }.toBitList()
+                val mostCommon = column.mostCommonBit()
+                oxygenRows = oxygenRows.filter { it[bitPos] == mostCommon.bitFlag }
             }
 
-            val co2Column = co2Rows.map { it[i] }.toBitList()
-            val leastCommon = co2Column.mostCommonBit().invert()
             if (co2Rows.size > 1) {
-                co2Rows = co2Rows.filter { it[i] == leastCommon.bitFlag }
+                val column = co2Rows.map { it[bitPos] }.toBitList()
+                val leastCommon = column.mostCommonBit().invert()
+                co2Rows = co2Rows.filter { it[bitPos] == leastCommon.bitFlag }
             }
         }
         val oxygenRating = oxygenRows.firstOrNull()?.toDecimal() ?: error("No valid element found for oxygen rating")
@@ -69,4 +69,3 @@ private class Part2 : PuzzleStep<DiagnosticReport> {
         return (oxygenRating * co2Rating).toString()
     }
 }
-
