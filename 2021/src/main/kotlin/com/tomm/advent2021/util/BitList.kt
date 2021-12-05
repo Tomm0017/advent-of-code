@@ -19,7 +19,5 @@ class BitList(val size: Int, private val bits: BitSet) {
         return bits[index]
     }
 
-    override fun toString(): String {
-        return (0 until size).map { if (bits[it]) "1" else "0" }.toString()
-    }
+    override fun toString(): String = bits.toString()
 }

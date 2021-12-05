@@ -55,13 +55,13 @@ private class Part2 : PuzzleStep<DiagnosticReport> {
             if (oxygenRows.size > 1) {
                 val column = oxygenRows.map { it[bitPos] }.toBitList()
                 val mostCommon = column.mostCommonBit()
-                oxygenRows = oxygenRows.filter { it[bitPos] == mostCommon.bitFlag }
+                oxygenRows = oxygenRows.filter { it[bitPos] == mostCommon.flag }
             }
 
             if (co2Rows.size > 1) {
                 val column = co2Rows.map { it[bitPos] }.toBitList()
                 val leastCommon = column.mostCommonBit().invert()
-                co2Rows = co2Rows.filter { it[bitPos] == leastCommon.bitFlag }
+                co2Rows = co2Rows.filter { it[bitPos] == leastCommon.flag }
             }
         }
         val oxygenRating = oxygenRows.firstOrNull()?.toDecimal() ?: error("No valid element found for oxygen rating")
